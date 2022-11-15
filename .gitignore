@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+__pycache__/
+repository/__pycache__/
+todo
+venv_send_news/
+secrets
