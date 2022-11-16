@@ -20,7 +20,7 @@ class MockPostsRepository(PostsRepository):
                 self.posts[idx].rating = rating
                 break
 
-    def get_post_by_hash(self, hash: str) -> schema.Post:
+    def get_post_by_hash(self, hash: str) -> schema.Post | None:
         for post in self.posts:
             if post.hash == hash:
                 return post

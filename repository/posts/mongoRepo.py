@@ -35,10 +35,10 @@ class MongoPostsRepository(PostsRepository):
         update: dict = {"$set": {"rating": rating}}
         self.posts_collection.update_one(filtr, update)
 
-    def get_post_by_hash(self, hash: str) -> schema.Post:
+    def get_post_by_hash(self, hash: str) -> schema.Post | None:
         result: List[dict] = list(self.posts_collection.find({"_id": hash}))
         if len(result) == 0:
-            raise exceptions.ResourceNotFoundException("Could not found post with id: ", )
+            return None
         post: schema.Post = schema.Post.from_json(result[0])
         return post
 

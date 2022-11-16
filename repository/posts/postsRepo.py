@@ -18,7 +18,7 @@ class PostsRepository(ABC):
         pass
 
     @abstractmethod
-    def get_post_by_hash(self, hash: str) -> schema.Post:
+    def get_post_by_hash(self, hash: str) -> schema.Post | None:
         pass
 
     @abstractmethod
