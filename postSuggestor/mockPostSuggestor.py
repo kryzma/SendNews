@@ -1,13 +1,14 @@
-from abc import ABC, abstractmethod
 from typing import List
 from random import randrange
 
-import schema
-import postSuggestor
+import postSuggestor.postSuggestor as postSuggestor
+from model import schema
 
 
 class MockPostsSuggestor(postSuggestor.PostsSuggestor):
-    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post:
+    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post | None:
+        if len(posts) == 0:
+            return None
         random_number = randrange(len(posts))
         return posts[random_number]
 

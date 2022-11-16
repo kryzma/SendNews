@@ -1,7 +1,6 @@
 from typing import List
 
-import schema
-import exceptions
+from model import schema, exceptions
 from repository.posts.postsRepo import PostsRepository
 
 

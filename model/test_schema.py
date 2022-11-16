@@ -1,5 +1,5 @@
 import unittest
-import schema
+from model import schema
 
 
 class TestSchema(unittest.TestCase):

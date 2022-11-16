@@ -1,15 +1,17 @@
 from typing import List
 
-import schema
+from model import schema
+
 import repository.rss.rssRepo as rssRepo
 import repository.posts.mongoRepo as mongoRepo
+import repository.posts.postsRepo as postsRepo
 
 
 def update_posts(urls: List[str]):
     """
     fetches posts and inserts ones that are not in db
     """
-    mr: mongoRepo.MongoPostsRepository = mongoRepo.MongoPostsRepository()
+    mr: postsRepo.PostsRepository = mongoRepo.MongoPostsRepository()
     rr: rssRepo.RssRepo = rssRepo.RssRepoImpl()
 
     posts: List[schema.Post] = rr.get_posts_from_urls(urls)

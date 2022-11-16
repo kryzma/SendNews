@@ -1,7 +1,6 @@
 from typing import List
 
-import exceptions
-import schema
+from model import schema
 
 from repository.posts.postsRepo import PostsRepository
 
@@ -44,7 +43,7 @@ class MongoPostsRepository(PostsRepository):
 
     def get_unrated_posts(self) -> List[schema.Post]:
         posts: List[schema.Post] = []
-        results: List[dict] = list(self.posts_collection.find({"score": -1}))
+        results: List[dict] = list(self.posts_collection.find({"rating": -1}))
         for result in results:
             posts.append(schema.Post.from_json(result))
         return posts
