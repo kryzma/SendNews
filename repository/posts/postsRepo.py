@@ -14,7 +14,7 @@ class PostsRepository(ABC):
         pass
 
     @abstractmethod
-    def update_post_score(self, hash: str, score: int):
+    def update_post_rating(self, hash: str, rating: int):
         pass
 
     @abstractmethod

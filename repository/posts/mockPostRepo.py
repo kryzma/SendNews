@@ -14,10 +14,10 @@ class MockPostsRepository(PostsRepository):
     def insert_post(self, post: schema.Post):
         self.posts.append(post)
 
-    def update_post_score(self, hash: str, score: int):
+    def update_post_rating(self, hash: str, rating: int):
         for idx, post in enumerate(self.posts):
             if post.hash_id == hash:
-                self.posts[idx].hash_id = hash
+                self.posts[idx].rating = rating
                 break
 
     def get_post_by_hash(self, hash: str) -> schema.Post:

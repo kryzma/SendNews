@@ -30,9 +30,9 @@ class MongoPostsRepository(PostsRepository):
              }
         self.posts_collection.insert_one(post)
 
-    def update_post_score(self, hash: str, score: int):
+    def update_post_rating(self, hash: str, rating: int):
         filtr: dict = {"_id": hash}
-        update: dict = {"$set": {"score": score}}
+        update: dict = {"$set": {"rating": rating}}
         self.posts_collection.update_one(filtr, update)
 
     def get_post_by_hash(self, hash: str) -> schema.Post:
