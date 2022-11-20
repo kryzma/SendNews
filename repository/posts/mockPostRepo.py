@@ -1,7 +1,7 @@
 from typing import List
 
-from src.model import schema, exceptions
-from src.repository.posts.postsRepo import PostsRepository
+from model import schema, exceptions
+from repository.posts.postsRepo import PostsRepository
 
 
 class MockPostsRepository(PostsRepository):

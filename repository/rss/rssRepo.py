@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 import xml.etree.ElementTree as ET
 
-from src.model import schema
+from model import schema
 
 import requests
 

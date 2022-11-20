@@ -1,8 +1,8 @@
 from typing import List
 
-from src.model import schema
+from model import schema
 
-from src.repository.posts.postsRepo import PostsRepository
+from repository.posts.postsRepo import PostsRepository
 
 from pymongo import MongoClient
 from pymongo.database import Database

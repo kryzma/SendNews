@@ -1,9 +1,9 @@
 from typing import List
 
-from src.model import schema
-from src.repository import postsRepo, mongoRepo
-from src.postSuggestor import postSuggestor
-from src.postSuggestor import mockPostSuggestor
+from model import schema
+from repository.posts import postsRepo, mongoRepo
+from postSuggestor import postSuggestor
+from postSuggestor import mockPostSuggestor
 
 from fastapi import FastAPI
 
