@@ -12,5 +12,5 @@ class MockPostsSuggestor(postSuggestor.PostsSuggestor):
         random_number = randrange(len(posts))
         return posts[random_number]
 
-    def send_suggestion_result(self, posts):
+    def send_suggestion_result(self, post):
         pass

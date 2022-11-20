@@ -45,14 +45,14 @@ class MongoPostsRepository(PostsRepository):
         posts: List[schema.Post] = []
         results: List[dict] = list(self.posts_collection.find({"rating": -1}))
         for result in results:
-            posts.append(schema.Post.from_json(result))
+            posts.append(schema.Post(**result))
         return posts
 
     def get_all_posts(self) -> List[schema.Post]:
         posts: List[schema.Post] = []
         results: List[dict] = list(self.posts_collection.find({}))
         for result in results:
-            new_post: schema.Post = schema.Post.from_json(result)
+            new_post: schema.Post = schema.Post(**result)
             posts.append(new_post)
         return posts
 

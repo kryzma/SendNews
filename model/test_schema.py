@@ -1,4 +1,7 @@
 import unittest
+
+import pydantic.error_wrappers
+
 from model import schema
 
 
@@ -11,9 +14,9 @@ class TestSchema(unittest.TestCase):
             "source": "foo",
             "link": "foo",
             "rating": -1,
-            "_id": "bar"
+            "hash_id": "bar"
         }
-        post: schema.Post = schema.Post.from_json(json_dict)
+        post: schema.Post = schema.Post(**json_dict)
 
         self.assertEqual(post.title, "foo")
         self.assertEqual(post.description, "foo")
@@ -26,7 +29,8 @@ class TestSchema(unittest.TestCase):
         json_dict = {
             "title": "foo",
         }
-        self.assertRaises(KeyError, schema.Post.from_json, json_dict)
+
+        self.assertRaises(pydantic.error_wrappers.ValidationError, schema.Post, **json_dict)
 
 
 if __name__ == '__main__':

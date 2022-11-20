@@ -1,8 +1,11 @@
+import json
 from typing import Optional
 import hashlib
 
+import pydantic
 
-class Post:
+
+class Post(pydantic.BaseModel):
     """
     A class to represent a single news post
     """
@@ -10,26 +13,19 @@ class Post:
     description: str
     source: str
     link: str
-    rating: int
-    hash_id: str
+    rating: int | None = None
+    hash_id: str | None = None
 
-    def __init__(self, title: str, description: str, source: str, link: str, rating: int = -1, hash_id: str = None):
-        self.title = title.strip()
-        self.description = description.strip()
-        self.source = source.strip()
-        self.link = link.strip()
-        self.rating = rating
-        self.hash_id = self.__hash__() if hash_id is None else hash_id
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if self.hash_id is None:
+            self.hash_id = self.__hash__()
+        if self.rating is None:
+            self.rating = -1
 
     def __hash__(self) -> str:
         source = self.title + self.description + self.source + self.link
         return hashlib.sha256(str.encode(source)).hexdigest()
 
-    @staticmethod
-    def from_json(json_dct):
-        return Post(json_dct["title"],
-                    json_dct["description"],
-                    json_dct["source"],
-                    json_dct["link"],
-                    json_dct["rating"],
-                    json_dct["_id"])
+    def to_json(self) -> str:
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)

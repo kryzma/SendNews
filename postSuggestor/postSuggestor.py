@@ -10,14 +10,14 @@ class PostsSuggestor(ABC):
     """
 
     @abstractmethod
-    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post:
+    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post | None:
         """
         returns suggested post from unseen posts
         """
         pass
 
     @abstractmethod
-    def send_suggestion_result(self, posts):
+    def send_suggestion_result(self, post):
         """
         retrieves suggestion result, used for improving suggestions
         """

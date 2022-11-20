@@ -46,6 +46,6 @@ class RssRepoImpl(RssRepo):
             description = rss_post.find("description").text
             source = source
             link = rss_post.find("link").text
-            posts.append(schema.Post(title, description, source, link))
+            posts.append(schema.Post())
 
         return posts
