@@ -1,8 +1,8 @@
 from typing import List
 
-from model import schema
+from ...model.schema import Post
 
-from repository.posts.postsRepo import PostsRepository
+from .postsRepo import PostsRepository
 
 from pymongo import MongoClient
 from pymongo.database import Database
@@ -18,7 +18,7 @@ class MongoPostsRepository(PostsRepository):
         db: Database = self.mongo_client["SendNews"]
         self.posts_collection: Collection = db["Posts"]
 
-    def insert_post(self, post: schema.Post):
+    def insert_post(self, post: Post):
         post = \
             {"_id": post.hash_id,
              "title": post.title,
@@ -34,25 +34,25 @@ class MongoPostsRepository(PostsRepository):
         update: dict = {"$set": {"rating": rating}}
         self.posts_collection.update_one(filtr, update)
 
-    def get_post_by_hash(self, hash: str) -> schema.Post | None:
+    def get_post_by_hash(self, hash: str) -> Post | None:
         result: List[dict] = list(self.posts_collection.find({"_id": hash}))
         if len(result) == 0:
             return None
-        post: schema.Post = schema.Post.from_json(result[0])
+        post: Post = Post(**result[0])
         return post
 
-    def get_unrated_posts(self) -> List[schema.Post]:
-        posts: List[schema.Post] = []
+    def get_unrated_posts(self) -> List[Post]:
+        posts: List[Post] = []
         results: List[dict] = list(self.posts_collection.find({"rating": -1}))
         for result in results:
-            posts.append(schema.Post(**result))
+            posts.append(Post(**result))
         return posts
 
-    def get_all_posts(self) -> List[schema.Post]:
-        posts: List[schema.Post] = []
+    def get_all_posts(self) -> List[Post]:
+        posts: List[Post] = []
         results: List[dict] = list(self.posts_collection.find({}))
         for result in results:
-            new_post: schema.Post = schema.Post(**result)
+            new_post: Post = Post(**result)
             posts.append(new_post)
         return posts
 

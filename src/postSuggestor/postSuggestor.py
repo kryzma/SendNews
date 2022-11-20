@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from model import schema
+from ..model.schema import Post
 
 
 class PostsSuggestor(ABC):
@@ -10,7 +10,7 @@ class PostsSuggestor(ABC):
     """
 
     @abstractmethod
-    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post | None:
+    def get_suggested_post(self, posts: List[Post]) -> Post | None:
         """
         returns suggested post from unseen posts
         """

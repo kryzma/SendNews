@@ -1,7 +1,7 @@
 import requests
 import json
 
-from model.schema import Post
+from src.model.schema import Post
 
 endpoint: str = "http://damp-bush-784.fly.dev"
 

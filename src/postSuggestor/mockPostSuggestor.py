@@ -1,12 +1,12 @@
 from typing import List
 from random import randrange
 
-import postSuggestor.postSuggestor as postSuggestor
-from model import schema
+from .postSuggestor import PostsSuggestor
+from ..model.schema import Post
 
 
-class MockPostsSuggestor(postSuggestor.PostsSuggestor):
-    def get_suggested_post(self, posts: List[schema.Post]) -> schema.Post | None:
+class MockPostsSuggestor(PostsSuggestor):
+    def get_suggested_post(self, posts: List[Post]) -> Post | None:
         if len(posts) == 0:
             return None
         random_number = randrange(len(posts))

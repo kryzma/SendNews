@@ -2,7 +2,7 @@ import unittest
 
 import pydantic.error_wrappers
 
-from model import schema
+from src.model import schema
 
 
 class TestSchema(unittest.TestCase):

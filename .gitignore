@@ -1,8 +1,5 @@
-.idea
-.DS_Store
-__pycache__/
-repository/__pycache__/
-todo
-venv_send_news/
 secrets
-fly.toml
+.idea
+venv_jobs
+__pycache__
+venv_suggestor

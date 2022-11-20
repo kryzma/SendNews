@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from model import schema
+from ...model.schema import Post
 
 
 class PostsRepository(ABC):
@@ -10,7 +10,7 @@ class PostsRepository(ABC):
     """
 
     @abstractmethod
-    def insert_post(self, post: schema.Post):
+    def insert_post(self, post: Post):
         pass
 
     @abstractmethod
@@ -18,14 +18,14 @@ class PostsRepository(ABC):
         pass
 
     @abstractmethod
-    def get_post_by_hash(self, hash: str) -> schema.Post | None:
+    def get_post_by_hash(self, hash: str) -> Post | None:
         pass
 
     @abstractmethod
-    def get_unrated_posts(self) -> List[schema.Post]:
+    def get_unrated_posts(self) -> List[Post]:
         pass
 
     @abstractmethod
-    def get_all_posts(self) -> List[schema.Post]:
+    def get_all_posts(self) -> List[Post]:
         pass
 
