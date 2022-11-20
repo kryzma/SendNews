@@ -1,10 +1,10 @@
 from typing import List
 
-from model import schema
+from src.model import schema
 
-import repository.rss.rssRepo as rssRepo
-import repository.posts.mongoRepo as mongoRepo
-import repository.posts.postsRepo as postsRepo
+import src.repository.rss.rssRepo as rssRepo
+import src.repository.posts.mongoRepo as mongoRepo
+import src.repository.posts.postsRepo as postsRepo
 
 
 def update_posts(urls: List[str]):

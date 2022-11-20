@@ -1,11 +1,9 @@
-import postSuggestor.postSuggestor
-import repository.posts as posts_repository
-import postSuggestor
-import mockPostSuggestor
-from model import schema
-
 from typing import List
 
+from src.model import schema
+from src.repository import postsRepo, mongoRepo
+from src.postSuggestor import postSuggestor
+from src.postSuggestor import mockPostSuggestor
 
 from fastapi import FastAPI
 
@@ -18,7 +16,9 @@ def suggest_post():
     Returns suggested post
     """
 
-    pr: posts_repository.postsRepo.PostsRepository = posts_repository.mongoRepo.MongoPostsRepository()
+    print("inside get")
+
+    pr: postsRepo.PostsRepository = mongoRepo.MongoPostsRepository()
     posts: List[schema.Post] = pr.get_unrated_posts()
     ps: postSuggestor.PostsSuggestor = mockPostSuggestor.MockPostsSuggestor()
 
@@ -26,10 +26,15 @@ def suggest_post():
 
 
 @app.post("/")
-def suggest_post_response():
+def suggest_post_response(post: schema.Post):
     """
     Takes in suggested post result
     """
-    return {"hi"}
+
+    print("user posted!")
+
+    ps: postSuggestor.PostsSuggestor = mockPostSuggestor.MockPostsSuggestor()
+    ps.send_suggestion_result(post)
+
 
 

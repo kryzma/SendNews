@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from model import schema
+from src.model import schema
 
 
 class PostsRepository(ABC):

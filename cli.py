@@ -3,7 +3,7 @@ import json
 
 from model.schema import Post
 
-endpoint: str = "http://localhost:8000"
+endpoint: str = "http://damp-bush-784.fly.dev"
 
 
 print("#" * 10)
@@ -18,6 +18,7 @@ while True:
     json_object = json.loads(response.text)
     post: Post = Post(**json_object)
 
+    print(post.title)
     vote = input("Did you like this post? (y/n)").lower()
     if vote == "y":
         print("user likes")
@@ -26,4 +27,5 @@ while True:
         print("user dislikes")
         post.rating = 0
 
-    requests.post(endpoint, post)
+    json_obj: str = post.to_json()
+    requests.post(endpoint, json_obj)
